@@ -1,0 +1,269 @@
+[
+    {
+        "id": "611ca4d849972625",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "29e7e21fcfc130bf",
+        "type": "mqtt in",
+        "z": "611ca4d849972625",
+        "name": "",
+        "topic": "sic/flow3/temp",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "d434ddaabdd5c931",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 90,
+        "y": 260,
+        "wires": [
+            [
+                "9e17a7d767e6f092"
+            ]
+        ]
+    },
+    {
+        "id": "9e17a7d767e6f092",
+        "type": "json",
+        "z": "611ca4d849972625",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 270,
+        "y": 160,
+        "wires": [
+            [
+                "67f1f8b73b52699b",
+                "f187f8abb1f53a12",
+                "4158f895d78066b0"
+            ]
+        ]
+    },
+    {
+        "id": "67f1f8b73b52699b",
+        "type": "function",
+        "z": "611ca4d849972625",
+        "name": "",
+        "func": "msg.payload = msg.payload.id;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 40,
+        "wires": [
+            [
+                "d4da35a07da0976b",
+                "665f6a6a0168b8ad"
+            ]
+        ]
+    },
+    {
+        "id": "f187f8abb1f53a12",
+        "type": "function",
+        "z": "611ca4d849972625",
+        "name": "",
+        "func": "msg.payload = msg.payload.temp;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 160,
+        "wires": [
+            [
+                "995d3b180999241c"
+            ]
+        ]
+    },
+    {
+        "id": "4158f895d78066b0",
+        "type": "function",
+        "z": "611ca4d849972625",
+        "name": "",
+        "func": "msg.topic = msg.payload.id;\nmsg.payload = msg.payload.temp;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 280,
+        "wires": [
+            [
+                "a4c57aafcdd998c7"
+            ]
+        ]
+    },
+    {
+        "id": "d4da35a07da0976b",
+        "type": "ui_text_input",
+        "z": "611ca4d849972625",
+        "name": "",
+        "label": "Nombre",
+        "tooltip": "",
+        "group": "dd70abe0.14cb38",
+        "order": 7,
+        "width": "3",
+        "height": "3",
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 620,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "995d3b180999241c",
+        "type": "ui_gauge",
+        "z": "611ca4d849972625",
+        "name": "",
+        "group": "dd70abe0.14cb38",
+        "order": 8,
+        "width": "4",
+        "height": "4",
+        "gtype": "gage",
+        "title": "Temperatura actual",
+        "label": "ºC",
+        "format": "{{value}}",
+        "min": "-8",
+        "max": "40",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 650,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "a4c57aafcdd998c7",
+        "type": "ui_chart",
+        "z": "611ca4d849972625",
+        "name": "",
+        "group": "dd70abe0.14cb38",
+        "order": 9,
+        "width": "0",
+        "height": "0",
+        "label": "Historico de temperaturas",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "-8",
+        "ymax": "40",
+        "removeOlder": "1",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 670,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "665f6a6a0168b8ad",
+        "type": "debug",
+        "z": "611ca4d849972625",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "ac758db0b44b4e57",
+        "type": "ui_spacer",
+        "z": "611ca4d849972625",
+        "name": "spacer",
+        "group": "dd70abe0.14cb38",
+        "order": 1,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "d434ddaabdd5c931",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "35.157.158.119",
+        "port": "1883",
+        "clientid": "jmcs79",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "2",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "dd70abe0.14cb38",
+        "type": "ui_group",
+        "name": "Temperatura Historial",
+        "tab": "6d54a11.6b2c0e",
+        "order": 5,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "6d54a11.6b2c0e",
+        "type": "ui_tab",
+        "name": "Temperatura",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
